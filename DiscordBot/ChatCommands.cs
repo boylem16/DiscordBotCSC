@@ -45,6 +45,7 @@ namespace DiscordBot
             }
 
             movies.Add(movie);
+            await Context.Channel.SendMessageAsync(movie.movieName + " was added");
 
             using (Stream stream = File.Open(serializationFile, FileMode.Create))
             {
