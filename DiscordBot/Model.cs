@@ -6,7 +6,26 @@ using System.Threading.Tasks;
 
 namespace DiscordBot
 {
-    class Model
+    [Serializable]
+    public class BaseModel
     {
+        public string userName = "";
+        
+    }
+
+
+    [Serializable]
+    public class Movie : BaseModel
+    {
+        public string genre = "";
+        public string movieName = "";
+        public string desc = "";
+    }
+
+
+    [Serializable]
+    public class Song : BaseModel
+    {
+        public string link;
     }
 }

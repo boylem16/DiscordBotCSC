@@ -27,6 +27,9 @@ namespace DiscordBot
                 LogLevel = LogSeverity.Debug
             });
 
+
+            
+
             _client.Log += Log;
             await _client.LoginAsync(TokenType.Bot, Config.bot.token);
             await _client.StartAsync();

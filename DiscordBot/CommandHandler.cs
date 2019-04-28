@@ -43,7 +43,7 @@ namespace DiscordBot
 
                 var result = await _service.ExecuteAsync(context, argPos, _services);
                 if(!result.IsSuccess){
-                    System.Console.WriteLine("Commands: " + _service.Commands.ToString());
+                    
                     Console.WriteLine(result.ErrorReason + " : " + msg.Content);
                 }
 
