@@ -4,7 +4,7 @@ using System.Text;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace DiscordBotCSC260
+namespace DiscordBot
 {
     class Utilities
     {

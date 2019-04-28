@@ -204,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatCommands.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="CommandHandler.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Program.cs" />

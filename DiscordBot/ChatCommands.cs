@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Discord.Commands;
+//using Discord.WebSocket;
 
 namespace DiscordBot
 {
-    class ChatCommands : ModuleBase<SocketCommandContext>
+    public class ChatCommands : ModuleBase<SocketCommandContext>
     {
         [Command("echo")]
         public async Task Echo() {

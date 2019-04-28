@@ -6,7 +6,7 @@ using Discord.WebSocket;
 using System.Threading.Tasks;
 using System.Reflection;
 
-namespace DiscordBotCSC260
+namespace DiscordBot
 {
     class CommandHandler
     {
@@ -14,29 +14,38 @@ namespace DiscordBotCSC260
         CommandService _service;
         IServiceProvider _services;
 
+
+
+
         public async Task initializeAsync(DiscordSocketClient client){
             _client = client;
             _service = new CommandService();
+
             await _service.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
             _client.MessageReceived += HandleCommandAsync;
         }
 
         private async Task HandleCommandAsync(SocketMessage s){
+
             var msg = s as SocketUserMessage;
-            if(msg == null){
+
+            if (msg == null){
+                System.Console.WriteLine("null");
                 return;
             }
 
             var context = new SocketCommandContext(_client, msg);
             int argPos = 0;
 
-            if(msg.HasStringPrefix(Config.bot.cmdPrefix, ref argPos) || msg.HasMentionPrefix(_client.CurrentUser, ref argPos)){
-                var result = await _service.ExecuteAsync(context, argPos, _services);
-                if(!result.IsSuccess && result.Error != CommandError.UnknownCommand){
-                    Console.WriteLine(result.ErrorReason);
-                }
+            string text = Config.bot.cmdPrefix;
 
-                
+            if(msg.HasStringPrefix(Config.bot.cmdPrefix, ref argPos) || msg.HasMentionPrefix(_client.CurrentUser, ref argPos)){
+
+                var result = await _service.ExecuteAsync(context, argPos, _services);
+                if(!result.IsSuccess){
+                    System.Console.WriteLine("Commands: " + _service.Commands.ToString());
+                    Console.WriteLine(result.ErrorReason + " : " + msg.Content);
+                }
 
             }
 
