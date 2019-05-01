@@ -59,7 +59,6 @@ namespace DiscordBot
         public async Task removeMovie([Remainder] string message)
         {
 
-
             string dir = @"C:\temp";
             string serializationFile = Path.Combine(dir, "movies.bin");
             using (Stream stream = File.Open(serializationFile, FileMode.Open))
@@ -70,7 +69,15 @@ namespace DiscordBot
             }
             var match = movies.FirstOrDefault(s => s.movieName == message);
             movies.Remove(match);
+            if (match != null)
+            {
+                await Context.Channel.SendMessageAsync(match.movieName + " was removed");
 
+            }
+            else
+            {
+                await Context.Channel.SendMessageAsync(message + " was not found");
+            }
             using (Stream stream = File.Open(serializationFile, FileMode.Create))
             {
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
